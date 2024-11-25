@@ -47,21 +47,27 @@ input {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.8rem;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
+  border: 0px;
+  border-radius: 9px;
   font-size: 1rem;
+  background-color: #E5F8F8; 
 }
 
+
 button {
+  display: block;
+  margin: 1rem auto; 
   padding: 0.8rem;
   background-color: #003b46;
   color: #ffffff;
+  width: 50%;
   font-size: 1rem;
   font-weight: bold;
   border: none;
-  border-radius: 4px;
+  border-radius: 9px;
   cursor: pointer;
 }
+
 
 button:hover {
   background-color: #005f6b;
