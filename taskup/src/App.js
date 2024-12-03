@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import Dashboard from './components/Dashboard';
 import AllTasks from './components/AllTasks';
+import Notifications from './components/Notifications';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tasks" element={<AllTasks />} />
+        <Route path="/notifications" element={<Notifications />} />
       </Routes>
     </Router>
   );
