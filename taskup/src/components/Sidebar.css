@@ -1,0 +1,83 @@
+.sidebar {
+  width: 250px;
+  background-color: #12454A;
+  color: white;
+  height: 100vh;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.sidebar.closed {
+  width: 0; 
+  padding: 0;
+  overflow: hidden;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 15px 20px; /* Adjusts position within sidebar */
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 2.5px;
+  background-color: white;
+  margin: 4px 0;
+}
+
+.sidebar-logo {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 10px; /* Adds a small gap from the hamburger */
+  width: 100%;
+}
+
+.sidebar-logo img {
+  width: 70%; /* Adjust width of the logo */
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; 
+}
+
+.sidebar-menu li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-menu li.active {
+  background-color: #0F383C;
+}
+
+.sidebar-menu a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.sidebar-menu img {
+  width: 20px;
+  height: 20px;
+}
+
+
+.sidebar.closed + .main-content {
+  margin-left: 0;
+}

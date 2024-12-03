@@ -3,19 +3,13 @@ import './Dashboard.css';
 import Sidebar from './Sidebar';
 import TaskSummary from './TaskSummary';
 import TaskTable from './TaskTable';
-import arrowDown from '../assets/profile-arrowdown.png';
-import arrowUp from '../assets/profile-arrowup.png';
+import Header from './Header';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prevState) => !prevState);
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prevState) => !prevState);
   };
 
   const [tasks, setTasks] = useState([]);
@@ -31,7 +25,7 @@ const Dashboard = () => {
     const fetchedTasks = [
       { id: 1, title: 'Task 1', priority: 'High', status: 'Completed', dueDate: '2024-10-25' },
       { id: 2, title: 'Task 2', priority: 'Low', status: 'In Progress', dueDate: '2024-10-30' },
-      { id: 3, title: 'Task 3', priority: 'Medium', status: 'In Progress', dueDate: new Date().toISOString().split('T')[0] }, 
+      { id: 3, title: 'Task 3', priority: 'Medium', status: 'In Progress', dueDate: new Date().toISOString().split('T')[0] },
     ];
 
     setTasks(fetchedTasks);
@@ -51,35 +45,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Sidebar isOpen={isSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
-        <header className="dashboard-header">
-          <div className="hamburger" onClick={toggleSidebar}>
-            <div className="line"></div>
-            <div className="line"></div>
-            <div className="line"></div>
-          </div>
-          <div className="user-info">
-            <div className="user-initial">U</div>
-            <div className="dropdown">
-              <span className="username" onClick={toggleDropdown}>
-                Username
-                <img
-                  src={isDropdownOpen ? arrowUp : arrowDown}
-                  alt="Dropdown Arrow"
-                  className="arrow-icon"
-                />
-              </span>
-              {isDropdownOpen && (
-                <div className="dropdown-menu">
-                  <p>Edit Profile</p>
-                  <hr />
-                  <p>Log Out</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </header>
+        {/* Pass isSidebarOpen to Header */}
+        <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <div className="dashboard-container">
           <section className="task-dashboard">
             <h2 className="section-heading">Task Dashboard</h2>

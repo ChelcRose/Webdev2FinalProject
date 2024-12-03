@@ -1,154 +1,29 @@
-.sidebar {
-  width: 250px;
-  background-color: #12454A;
-  color: white;
-  height: 100vh;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1000;
-}
-
-.sidebar.closed {
-  width: 0; 
-  padding: 0;
-  overflow: hidden;
-}
-
-.sidebar.closed .sidebar-logo img {
-  opacity: 0;
-}
-
-.sidebar-logo img {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-}
-
-.sidebar-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%; 
-}
-
-.sidebar-menu li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px 20px; 
-  transition: background-color 0.3s ease; 
-  width: 100%;
-}
-
-.sidebar-menu li.active {
-  background-color: #0F383C;
-}
-
-.sidebar-menu a {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 15px; 
-  font-size: 16px;
-  width: 100%;
-}
-
-.sidebar-menu img {
-  width: 20px;
-  height: 20px;
-}
 .dashboard-container {
-  padding: 20px;
-}
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #031F26;
-  color: white;
-  padding: 10px 20px;
-  position: fixed;
-  top: 0;
-  left: 250px;
-  right: 0;
-  height: 60px;
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-  
-  .sidebar.closed + .main-content .dashboard-header {
-    left: 0; 
-  }
-  .sidebar.closed .sidebar-menu li {
-    opacity: 0; 
-    pointer-events: none;
-  }
-  .hamburger {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .hamburger .line {
-    width: 25px;
-    height: 2.5px;
-    background-color: white;
-    margin: 3px 0;
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-initial {
-    background-color: #005f6b;
-    color: white;
-    font-size: 1.2rem;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  
-  .main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    margin-left: 250px;
-    padding: 80px 20px 20px;
-    transition: margin-left 0.3s ease;
-  }
-  
-  .sidebar.closed + .main-content {
-    margin-left: 0;
-  }
-  
-  .dashboard {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position: relative;
-    background-color: #E5F8F8;
-  }
-
-.dashboard-container {
-  flex-grow: 1;
   padding: 20px;
   background-color: #E5F8F8;
 }
-  
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  padding: 80px 20px 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.closed + .main-content {
+  margin-left: 0;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background-color: #E5F8F8;
+}
+
 .section-heading {
   font-size: 15px;
   font-weight: 200;
@@ -157,12 +32,11 @@
   padding: 15px;
 }
 
-  
 .task-summary {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   gap: 20px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 
 .summary-card {
@@ -194,128 +68,53 @@
   font-size: 1.5rem;
   color: #333;
 }
-  
+
 .summary-card p {
   margin: 5px 0 0;
   font-size: 0.9rem;
   color: #666;
 }
-  
-  .summary-card.alltasks {
-    background-color: white;
-  }
-  
-  .summary-card.inprogress {
-    background-color: white;
-  }
-  
-  .summary-card.overdue {
-    background-color: white;
-  }
-  
-  .summary-card.duetoday {
-    background-color: white;
-  }
-  .summary-card.complete {
-    background-color: white;
-  }
-  
-  .task-table {
-    border-radius: 5px;
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background: white;
- 
-  }
-  
-  .task-table th,
-  .task-table td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .task-table th {
-    background-color: #ffffff;
-    color: #333333aa;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .task-table td.completed {
-    color: #4caf50;
-  }
-  
-  .task-table td.inprogress {
-    color: #ff9800;
-  }
-  
-  footer {
-    position: fixed; 
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-    color: white;
-    background-color: #000000;
-    padding: 10px 0;
-    z-index: 1000;
-  }
 
-  .user-info {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  
-  .dropdown {
-    position: relative;
-  }
-  
-  .username {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
+.task-table {
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: white;
+}
 
-  }
-  
-  .arrow-icon {
-    width: 15px;
-    height: 15px;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 30px;
-    width: 180px;
-    height: 80px;
-    right: -20px;
-    background-color: #031f26;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    text-align: left;
-  }
-  
-  .dropdown-menu p:first-child {
-    text-align: left;
-  }
-  
-  .dropdown-menu p:last-child {
-    text-align: center;
-    font-size: 13px;
-    margin-top: 0px;
-    
-  }
-  
-  .dropdown-menu hr {
-    border: 0.5px solid #476065;
-    margin-top: 20px;
-  }
-  
+.task-table th,
+.task-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.task-table th {
+  background-color: #ffffff;
+  color: #333333aa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.task-table td.completed {
+  color: #4caf50;
+}
+
+.task-table td.inprogress {
+  color: #ff9800;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #000000;
+  padding: 10px 0;
+  z-index: 1000;
+}

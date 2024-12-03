@@ -1,0 +1,67 @@
+.tasks-container {
+    padding: 20px;
+    flex-grow: 1;
+  }
+  
+  body{
+    background-color: #E5F8F8;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    color: #031f26;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .filter-btn img {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .view-details-btn {
+    position: relative;
+    right:50px;
+    background-color: #12454a;
+    font-weight: normal;
+    color: white;
+    font-size: 14px;
+    border: none;
+    width:100px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .view-details-btn:hover {
+    background-color: #0f383c;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination-btn {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .pagination-current {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
