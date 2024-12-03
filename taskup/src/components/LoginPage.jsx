@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   const onSubmit = (data) => {
     console.log('Login Data:', data);
-    navigate('/dashboard'); //no dashboard yet
+    navigate('/dashboard'); 
   };
 
   return (
