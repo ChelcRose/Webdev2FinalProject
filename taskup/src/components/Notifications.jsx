@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Notifications.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import Footer from './Footer';
 
 const Notifications = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -84,10 +85,11 @@ const Notifications = () => {
               onClick={() => handlePageChange('next')}
               disabled={currentPage === totalPages}
             >
-              &gt;
+            &gt;
             </button>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@
     padding: 10px 20px;
     position: fixed;
     top: 0;
-    left: 250px; /* Width of the sidebar when open */
+    left: 250px;
     right: 0;
     height: 60px;
     transition: left 0.3s ease;
@@ -15,21 +15,7 @@
   }
   
   .header.expanded {
-    left: 0; /* Adjust header position when sidebar is collapsed */
-  }
-  
-  
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-  }
-  
-  .hamburger .line {
-    width: 25px;
-    height: 2.5px;
-    background-color: white;
-    margin: 3px 0;
+    left: 0;
   }
   
   .user-info {
@@ -85,6 +71,7 @@
     text-align: center;
     font-size: 13px;
     margin-top: 0px;
+    cursor: pointer;
   }
   
   .dropdown-menu hr {

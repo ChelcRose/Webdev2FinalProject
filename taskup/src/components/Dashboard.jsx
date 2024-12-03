@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import TaskSummary from './TaskSummary';
 import TaskTable from './TaskTable';
 import Header from './Header';
+import Footer from './Footer';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -47,7 +48,6 @@ const Dashboard = () => {
     <div className="dashboard">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
-        {/* Pass isSidebarOpen to Header */}
         <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <div className="dashboard-container">
           <section className="task-dashboard">
@@ -59,7 +59,7 @@ const Dashboard = () => {
             <TaskTable tasks={tasks} />
           </section>
         </div>
-        <footer>Copyright © 2024 - TaskUp. All Rights Reserved.</footer>
+        <Footer />
       </div>
     </div>
   );

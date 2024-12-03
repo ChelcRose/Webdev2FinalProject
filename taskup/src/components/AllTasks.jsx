@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AllTasks.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import Footer from './Footer';
 
 const AllTasks = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -55,6 +56,7 @@ const AllTasks = () => {
             </tbody>
           </table>
         </div>
+        <Footer />
       </div>
     </div>
   );

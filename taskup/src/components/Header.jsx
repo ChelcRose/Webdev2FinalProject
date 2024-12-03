@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import arrowDown from '../assets/profile-arrowdown.png';
 import arrowUp from '../assets/profile-arrowup.png';
 
 const Header = ({ toggleSidebar, isSidebarOpen }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
+  };
+
+  const handleEditProfile = () => {
+    navigate('/edit-profile');
+  };
+
+  const handleLogout = () => {
+    navigate('/');
   };
 
   return (
@@ -30,9 +40,11 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
           </span>
           {isDropdownOpen && (
             <div className="dropdown-menu">
-              <p>Edit Profile</p>
+              <p onClick={handleEditProfile} className="edit-profile-button">
+                Edit Profile
+              </p>
               <hr />
-              <p>Log Out</p>
+              <p onClick={handleLogout} className="logout-button">Log Out</p>
             </div>
           )}
         </div>
