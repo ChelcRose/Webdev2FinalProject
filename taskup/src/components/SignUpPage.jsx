@@ -9,7 +9,7 @@ const SignUpPage = () => {
 
   const onSubmit = (data) => {
     console.log('Sign Up Data:', data);
-    navigate('/'); //to sign in page
+    navigate('/');
   };
 
   return (

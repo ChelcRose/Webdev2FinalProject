@@ -158,29 +158,48 @@
 }
 
   
-  .task-summary {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
+.task-summary {
+  display: flex;
+  justify-content:space-evenly;
+  gap: 20px;
+  flex-wrap:wrap;
+}
+
+.summary-card {
+  flex: 1;
+  max-width: 150px;
+  text-align: left;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 10px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.summary-content {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.summary-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.summary-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
   
-  .summary-card {
-    flex: 1;
-    text-align: center;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 0 10px;
-  }
-  
-  .summary-card h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .summary-card p {
-    font-size: 1rem;
-    color: #666;
-  }
+.summary-card p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
   
   .summary-card.alltasks {
     background-color: white;
@@ -202,24 +221,27 @@
   }
   
   .task-table {
-    width: 100%;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
     border-collapse: collapse;
     background: white;
+ 
   }
   
   .task-table th,
   .task-table td {
+    text-align: center;
+    vertical-align: middle;
     padding: 15px;
     text-align: left;
+    border-bottom: 1px solid #e0e0e0;
   }
   
   .task-table th {
-    background-color: #f4f6f8;
-    color: #333;
-  }
-  
-  .task-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
+    color: #333333aa;
+    border-bottom: 1px solid #e0e0e0;
   }
   
   .task-table td.completed {
@@ -242,3 +264,58 @@
     padding: 10px 0;
     z-index: 1000;
   }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .username {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+
+  }
+  
+  .arrow-icon {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 30px;
+    width: 180px;
+    height: 80px;
+    right: -20px;
+    background-color: #031f26;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: left;
+  }
+  
+  .dropdown-menu p:first-child {
+    text-align: left;
+  }
+  
+  .dropdown-menu p:last-child {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 0px;
+    
+  }
+  
+  .dropdown-menu hr {
+    border: 0.5px solid #476065;
+    margin-top: 20px;
+  }
+  
