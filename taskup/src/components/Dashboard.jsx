@@ -8,11 +8,6 @@ import Footer from './Footer';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prevState) => !prevState);
-  };
-
   const [tasks, setTasks] = useState([]);
   const [summary, setSummary] = useState({
     totalTasks: 0,
@@ -22,11 +17,51 @@ const Dashboard = () => {
     dueToday: 0,
   });
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prevState) => !prevState);
+  };
+
   useEffect(() => {
     const fetchedTasks = [
-      { id: 1, title: 'Task 1', priority: 'High', status: 'Completed', dueDate: '2024-10-25' },
-      { id: 2, title: 'Task 2', priority: 'Low', status: 'In Progress', dueDate: '2024-10-30' },
-      { id: 3, title: 'Task 3', priority: 'Medium', status: 'In Progress', dueDate: new Date().toISOString().split('T')[0] },
+      {
+        id: 1,
+        title: 'Task 1',
+        description: 'Task 1 description here.',
+        priority: 'High',
+        status: 'Completed',
+        dueDate: '2024-10-25',
+        startDate: '2024-10-20',
+        finishDate: '2024-10-24',
+        notes: 'Task 1 notes.',
+        assignedBy: 'Admin1@email.com',
+        assignedTo: 'User1@email.com',
+      },
+      {
+        id: 2,
+        title: 'Task 2',
+        description: 'Task 2 description here.',
+        priority: 'Low',
+        status: 'In Progress',
+        dueDate: '2024-10-30',
+        startDate: '2024-10-25',
+        finishDate: '',
+        notes: 'Task 2 notes.',
+        assignedBy: 'Admin2@email.com',
+        assignedTo: 'User1@email.com',
+      },
+      {
+        id: 3,
+        title: 'Task 3',
+        description: 'Task 3 description here.',
+        priority: 'Medium',
+        status: 'In Progress',
+        dueDate: new Date().toISOString().split('T')[0],
+        startDate: '2024-10-28',
+        finishDate: '',
+        notes: 'Task 3 notes.',
+        assignedBy: 'Admin3@email.com',
+        assignedTo: 'User1@email.com',
+      },
     ];
 
     setTasks(fetchedTasks);
@@ -46,7 +81,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={toggleSidebar}
+        tasks={tasks} // Pass tasks to Sidebar
+      />
       <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
         <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <div className="dashboard-container">

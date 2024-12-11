@@ -1,46 +1,20 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './AllTasks.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
 
 const AllTasks = () => {
+  const { state } = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [tasks, setTasks] = useState(state?.tasks || []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prevState) => !prevState);
   };
-
-  const tasks = [
-    {
-      id: 1,
-      title: 'Task 1',
-      description: 'Lorem ipsum astrotik ov, förnamn. Nånade äde.',
-      assignedBy: 'Admin@email.com',
-      assignedTo: 'User@email.com',
-      priority: 'High',
-      status: 'Complete',
-      dueDate: '10/25/2024',
-      startDate: '10/20/2024',
-      finishDate: '10/24/2024',
-      notes: 'Message',
-    },
-    {
-      id: 2,
-      title: 'Task 2',
-      description: 'Example task description.',
-      assignedBy: 'Admin@email.com',
-      assignedTo: 'User@email.com',
-      priority: 'Low',
-      status: 'In Progress',
-      dueDate: '10/30/2024',
-      startDate: '10/25/2024',
-      finishDate: 'N/A',
-      notes: '',
-    },
-  ];
 
   const handleViewDetails = (task) => {
     setSelectedTask(task);
@@ -50,6 +24,14 @@ const AllTasks = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedTask(null);
+  };
+
+  const handleSaveNotes = () => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === selectedTask.id ? { ...task, notes: selectedTask.notes } : task
+    );
+    setTasks(updatedTasks);
+    setIsModalOpen(false);
   };
 
   return (
@@ -78,7 +60,9 @@ const AllTasks = () => {
                   <td>{task.title}</td>
                   <td>{task.assignedTo}</td>
                   <td>{task.priority}</td>
-                  <td className={task.status.toLowerCase().replace(' ', '-')}>{task.status}</td>
+                  <td className={task.status.toLowerCase().replace(' ', '-')}>
+                    {task.status}
+                  </td>
                   <td>{task.dueDate}</td>
                   <td>
                     <button
@@ -121,11 +105,22 @@ const AllTasks = () => {
                 </div>
                 <div className="modal-notes">
                   <p><strong>Notes:</strong></p>
-                  <textarea defaultValue={selectedTask.notes} disabled></textarea>
+                  <textarea
+                    placeholder="Enter your notes here"
+                    value={selectedTask.notes || ''}
+                    onChange={(e) =>
+                      setSelectedTask((prevTask) => ({
+                        ...prevTask,
+                        notes: e.target.value,
+                      }))
+                    }
+                  />
                 </div>
               </div>
               <div className="modal-footer">
-                <button className="edit-btn">Edit</button>
+                <button className="edit-btn" onClick={handleSaveNotes}>
+                  Save
+                </button>
               </div>
             </div>
           </div>

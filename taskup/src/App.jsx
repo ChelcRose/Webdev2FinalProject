@@ -5,7 +5,7 @@ import SignUpPage from './components/SignUpPage';
 import Dashboard from './components/Dashboard';
 import AllTasks from './components/AllTasks';
 import Notifications from './components/Notifications';
-import EditProfile from './components/EditProfile'; 
+import EditProfile from './components/EditProfile';
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tasks" element={<AllTasks />} />
         <Route path="/notifications" element={<Notifications />} />
-        <Route path="/edit-profile" element={<EditProfile />} /> 
+        <Route path="/edit-profile" element={<EditProfile />} />
       </Routes>
     </Router>
   );

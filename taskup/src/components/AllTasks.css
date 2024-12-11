@@ -99,17 +99,25 @@
 }
 
 .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #333;
-    width: 35px;
-    height: 35px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  width: auto; 
+  height: auto; 
+  padding: 5px;
+  line-height: 1;
 }
+
+.close-btn:hover {
+  color: #12454a; 
+  width:27px;
+}
+
 
 .modal-body {
     margin-bottom: 20px;
