@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Dashboard.css';
 import Sidebar from './Sidebar';
 import TaskSummary from './TaskSummary';
 import TaskTable from './TaskTable';
 import Header from './Header';
 import Footer from './Footer';
+import useStore from '../store';
 
 const Dashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [tasks, setTasks] = useState([]);
-  const [summary, setSummary] = useState({
-    totalTasks: 0,
-    inProgress: 0,
-    completed: 0,
-    overdue: 0,
-    dueToday: 0,
-  });
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prevState) => !prevState);
-  };
+  const tasks = useStore((state) => state.tasks);
+  const setTasks = useStore((state) => state.setTasks);
+  const summary = useStore((state) => state.summary);
+  const setSummary = useStore((state) => state.setSummary);
 
   useEffect(() => {
+  
     const fetchedTasks = [
       {
         id: 1,
@@ -67,7 +60,6 @@ const Dashboard = () => {
     setTasks(fetchedTasks);
 
     const today = new Date().toISOString().split('T')[0];
-
     const taskSummary = {
       totalTasks: fetchedTasks.length,
       inProgress: fetchedTasks.filter((task) => task.status === 'In Progress').length,
@@ -77,17 +69,13 @@ const Dashboard = () => {
     };
 
     setSummary(taskSummary);
-  }, []);
+  }, [setTasks, setSummary]);
 
   return (
     <div className="dashboard">
-      <Sidebar
-        isOpen={isSidebarOpen}
-        toggleSidebar={toggleSidebar}
-        tasks={tasks} // Pass tasks to Sidebar
-      />
-      <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
-        <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+      <Sidebar />
+      <div className="main-content">
+        <Header />
         <div className="dashboard-container">
           <section className="task-dashboard">
             <h2 className="section-heading">Task Dashboard</h2>

@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './AllTasks.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
+import useStore from '../store';
 
 const AllTasks = () => {
   const { state } = useLocation();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const tasks = useStore((state) => state.tasks);
+  const setTasks = useStore((state) => state.setTasks);
+  const isSidebarOpen = useStore((state) => state.isSidebarOpen);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
-  const [tasks, setTasks] = useState(state?.tasks || []);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prevState) => !prevState);
-  };
+  useEffect(() => {
+    
+    if (state?.tasks && tasks.length === 0) {
+      setTasks(state.tasks);
+    }
+  }, [state, tasks, setTasks]);
 
   const handleViewDetails = (task) => {
     setSelectedTask(task);
@@ -31,14 +37,15 @@ const AllTasks = () => {
       task.id === selectedTask.id ? { ...task, notes: selectedTask.notes } : task
     );
     setTasks(updatedTasks);
-    setIsModalOpen(false);
+    closeModal();
   };
 
   return (
     <div className="all-tasks-page">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+ 
+      <Sidebar />
       <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
-        <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+        <Header />
         <div className="tasks-container">
           <h2 className="section-heading">All Tasks</h2>
           <table className="task-table">
@@ -87,24 +94,42 @@ const AllTasks = () => {
                 <h2>{selectedTask.title}</h2>
               </div>
               <div className="modal-body">
-                <p><strong>Description:</strong> {selectedTask.description}</p>
+                <p>
+                  <strong>Description:</strong> {selectedTask.description}
+                </p>
                 <div className="modal-info">
                   <div>
-                    <p><strong>Assigned by:</strong> {selectedTask.assignedBy}</p>
-                    <p><strong>Priority:</strong> {selectedTask.priority}</p>
-                    <p><strong>Status:</strong> {selectedTask.status}</p>
+                    <p>
+                      <strong>Assigned by:</strong> {selectedTask.assignedBy}
+                    </p>
+                    <p>
+                      <strong>Priority:</strong> {selectedTask.priority}
+                    </p>
+                    <p>
+                      <strong>Status:</strong> {selectedTask.status}
+                    </p>
                   </div>
                   <div>
-                    <p><strong>Assigned to:</strong> {selectedTask.assignedTo}</p>
-                    <p><strong>Due Date:</strong> {selectedTask.dueDate}</p>
+                    <p>
+                      <strong>Assigned to:</strong> {selectedTask.assignedTo}
+                    </p>
+                    <p>
+                      <strong>Due Date:</strong> {selectedTask.dueDate}
+                    </p>
                   </div>
                 </div>
                 <div className="modal-dates">
-                  <p><strong>Start Task Date:</strong> {selectedTask.startDate}</p>
-                  <p><strong>Finish Task Date:</strong> {selectedTask.finishDate}</p>
+                  <p>
+                    <strong>Start Task Date:</strong> {selectedTask.startDate}
+                  </p>
+                  <p>
+                    <strong>Finish Task Date:</strong> {selectedTask.finishDate}
+                  </p>
                 </div>
                 <div className="modal-notes">
-                  <p><strong>Notes:</strong></p>
+                  <p>
+                    <strong>Notes:</strong>
+                  </p>
                   <textarea
                     placeholder="Enter your notes here"
                     value={selectedTask.notes || ''}

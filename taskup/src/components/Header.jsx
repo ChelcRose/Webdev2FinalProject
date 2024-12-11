@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import arrowDown from '../assets/profile-arrowdown.png';
 import arrowUp from '../assets/profile-arrowup.png';
+import useStore from '../store';
 
-const Header = ({ toggleSidebar, isSidebarOpen }) => {
+const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+
+  const isSidebarOpen = useStore((state) => state.isSidebarOpen);
+  const toggleSidebar = useStore((state) => state.toggleSidebar);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);

@@ -1,36 +1,26 @@
 import React, { useState } from 'react';
 import './EditProfile.css';
-import Sidebar from './sidebar';
-import Header from './header';
+import Sidebar from './Sidebar';
+import Header from './Header';
 import ProfileModal from './EditProfileModal';
-import Footer from './footer';
+import Footer from './Footer';
+import useStore from '../store';
+import defaultAvatar from '../assets/default-avatar.png';
 
 const ProfilePage = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => setIsSidebarOpen((prevState) => !prevState);
+  const isSidebarOpen = useStore((state) => state.isSidebarOpen); 
+  const toggleSidebar = useStore((state) => state.toggleSidebar);
 
-  const [profileImage, setProfileImage] = useState('/assets/Profile_photo.png');
+  const profileData = useStore((state) => state.profileData); 
+  const setProfileData = useStore((state) => state.setProfileData); 
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [profileData, setProfileData] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    profileImage: '/assets/Profile_photo.png', // Default profile image
-  });
 
   const handleImageUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImage(e.target.result);  // Update the profile image
-        setProfileData((prevState) => ({
-          ...prevState,
-          profileImage: e.target.result,  // Update the profile data image
-        }));
+        setProfileData({ profileImage: e.target.result });
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -46,22 +36,23 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <Sidebar />
       <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
-        <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+        <Header />
         <div className="profile-container">
           <div className="profile-header">
             <div className="profile-picture">
               <img
-                src={profileData.profileImage || profileImage}
+                src={profileData.profileImage || defaultAvatar}
                 alt="Profile"
-                width="100"
-                height="100"
+                width="150"
+                height="150"
+                className="profile-avatar"
               />
             </div>
           </div>
 
-          {/* Profile Form */}
+         
           <div className="form-grid">
             <div className="form-group">
               <label htmlFor="name">Name</label>
@@ -132,13 +123,12 @@ const ProfilePage = () => {
 
         <Footer />
 
-        {/* Profile Modal */}
         {isModalOpen && (
           <ProfileModal
-            profileData={profileData}
+            profileData={profileData} 
             onClose={closeModal}
             onSave={saveProfile}
-            handleImageUpload={handleImageUpload} // Pass image handler to modal
+            handleImageUpload={handleImageUpload}
           />
         )}
       </div>
