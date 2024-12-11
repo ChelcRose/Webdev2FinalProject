@@ -3,6 +3,7 @@ import './EditProfile.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
+import defaultAvatar from "../assets/default-avatar.png";
 
 const EditProfile = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -25,7 +26,7 @@ const EditProfile = () => {
         <div className="profile-container">
           <div className="profile-header">
             <div className="profile-picture">
-              <div className="avatar">
+              <div img src={defaultAvatar} className="avatar">
                 <i className="profile-icon" />
               </div>
               <button className="upload-button">Upload Photo</button>
