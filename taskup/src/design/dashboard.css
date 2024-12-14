@@ -34,26 +34,32 @@
 
 .task-summary {
   display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 20px;
+  justify-content: center; 
+  align-items: center;
 }
 
 .summary-card {
-  flex: 1;
+  flex: 0 1 calc(20% - 10px); 
   max-width: 150px;
-  text-align: left;
+  min-width: 60px;
+  text-align: center;
   padding: 15px;
   border-radius: 8px;
-  margin: 10px 10px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
 }
 
 .summary-content {
   display: flex;
+  flex-direction:row;
   align-items: center;
   gap: 18px;
 }
@@ -75,20 +81,32 @@
   color: #666;
 }
 
+.tasks-container {
+  padding: 20px;
+  flex-grow: 1;
+  width: 100%;
+  overflow-x: auto; 
+  box-sizing: border-box; 
+}
+
+
 .task-table {
   border-radius: 5px;
-  width: 80%;
-  margin: 0 auto;
+  width: 100%; 
+  max-width: 100%;
+  margin: 0 auto; 
   border-collapse: collapse;
-  background: white;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 .task-table th,
 .task-table td {
   text-align: center;
   vertical-align: middle;
   padding: 15px;
-  text-align: left;
+  font-size: 1rem;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -104,4 +122,97 @@
 
 .task-table td.inprogress {
   color: #ff9800;
+}
+
+.summary-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.summary-card h2 {
+  margin: 0;
+  font-size: 1.2rem; 
+  color: #333;
+}
+
+.summary-card p {
+  margin: 5px 0 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+@media screen and (max-width: 768px) {
+  .summary-card {
+    flex: 0 1 130px;
+    max-width: 130px;
+    min-width: 110px;
+    padding: 12px;
+  }
+
+  .task-table {
+    font-size: 0.8rem;
+  }
+
+  .task-table th,
+  .task-table td {
+    padding: 8px;
+  }
+
+  .summary-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .summary-card h2 {
+    font-size: 1rem;
+  }
+
+  .summary-card p {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .task-summary {
+    justify-content: space-evenly;
+  }
+
+  .summary-card {
+    flex: 0 1 90px;
+    max-width: 90px;
+    padding: 8px;
+  }
+
+  .summary-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .summary-card h2 {
+    font-size: 0.8rem;
+  }
+
+  .summary-card p {
+    font-size: 0.6rem;
+  }
+
+  .task-table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    font-size: 0.75rem;
+  }
+
+  .task-table th,
+  .task-table td {
+    padding: 6px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .task-table th,
+  .task-table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 }
