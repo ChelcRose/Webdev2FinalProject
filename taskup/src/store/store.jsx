@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import defaultAvatar from './assets/default-avatar.png';
+import defaultAvatar from '../assets/default-avatar.png';
 
 const useStore = create((set) => ({
   isSidebarOpen: true,

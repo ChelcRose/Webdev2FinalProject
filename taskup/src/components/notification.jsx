@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../design/notification.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
-import Footer from './ooter';
+import Footer from './Footer';
 import useStore from '../store';
 
 const Notifications = () => {

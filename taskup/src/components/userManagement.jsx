@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../design/userlist.css';
 import Sidebar from './sidebarAdmin';
 import Header from './headerAdmin';
-import Footer from './footer';
+import Footer from './Footer';
 import UserList from './UserList'; 
 import EditUserModal from './editUserModal'; 
 import ViewUserModal from './viewUserModal';

@@ -26,8 +26,6 @@ body{
 }
 
 .view-details-btn {
-  position: relative;
-  right:30px;
   background-color: #12454a;
   font-weight: normal;
   color: white;
@@ -170,3 +168,73 @@ width:27px;
   resize: vertical;
   box-sizing: border-box;
 }
+
+.task-table {
+  border-radius: 5px;
+  width: 100%; 
+  max-width: 100%;
+  margin: 0 auto; 
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.task-table th,
+.task-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 15px;
+  font-size: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.task-table th {
+  background-color: #ffffff;
+  color: #333333aa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.task-table td.completed {
+  color: #4caf50;
+}
+
+.task-table td.inprogress {
+  color: #ff9800;
+}
+
+@media screen and (max-width: 768px) {
+
+  .task-table {
+    font-size: 0.8rem;
+  }
+
+  .task-table th,
+  .task-table td {
+    padding: 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .task-table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    font-size: 0.75rem;
+  }
+
+  .task-table th,
+  .task-table td {
+    padding: 6px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .task-table th,
+  .task-table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
