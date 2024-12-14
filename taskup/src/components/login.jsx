@@ -12,7 +12,6 @@ const LoginPage = () => {
   const onSubmit = (data) => {
     console.log('Login Data:', data);
 
-    // (Replace this with actual API calls)
     if (data.email === "admin@taskup.com" && data.password === "admin123") {
       setUser({ isAuthenticated: true, role: "admin" });
       navigate('/dashboardAdmin');
@@ -26,16 +25,13 @@ const LoginPage = () => {
 
   return (
     <div className="container">
-      {/* Left Side */}
       <div className="left-panel">
         <img src={logo} alt="TaskUp Logo" className="logo" />
       </div>
 
-      {/* Right Side */}
       <div className="right-panel">
         <h2>Login to your account</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Email Input */}
           <input
             {...register('email', { required: "Email is required", pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
             placeholder="Email"
@@ -43,7 +39,6 @@ const LoginPage = () => {
           />
           {errors.email && <p className="error">{errors.email.message}</p>}
 
-          {/* Password Input */}
           <input
             {...register('password', { required: "Password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
             placeholder="Password"
@@ -51,11 +46,9 @@ const LoginPage = () => {
           />
           {errors.password && <p className="error">{errors.password.message}</p>}
 
-          {/* Submit Button */}
           <button type="submit">Sign In</button>
         </form>
 
-        {/* Sign-Up Link */}
         <p>
           Don’t have an account yet? <a href="/signup">Sign Up</a>
         </p>
