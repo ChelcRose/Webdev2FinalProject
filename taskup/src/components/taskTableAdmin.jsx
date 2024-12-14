@@ -1,12 +1,13 @@
 import React from 'react';
 
-const TaskTable = ({ tasks }) => {
+const TaskTableAdmin = ({ tasks }) => {
   return (
     <table className="task-table">
       <thead>
         <tr>
           <th>Task ID</th>
           <th>Title</th>
+          <th>User</th>
           <th>Priority</th>
           <th>Status</th>
           <th>Due Date</th>
@@ -17,6 +18,7 @@ const TaskTable = ({ tasks }) => {
           <tr key={task.id}>
             <td>{task.id}</td>
             <td>{task.title}</td>
+            <td>{task.user}</td>
             <td>{task.priority}</td>
             <td className={task.status.toLowerCase().replace(' ', '')}>{task.status}</td>
             <td>{task.dueDate}</td>
@@ -27,4 +29,4 @@ const TaskTable = ({ tasks }) => {
   );
 };
 
-export default TaskTable;
+export default TaskTableAdmin;

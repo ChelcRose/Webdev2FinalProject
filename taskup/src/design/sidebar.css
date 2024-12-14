@@ -52,10 +52,12 @@
 
 .sidebar-menu li {
   display: flex;
+  gap:15px;
   align-items: center;
   justify-content: flex-start;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .sidebar-menu li.active {

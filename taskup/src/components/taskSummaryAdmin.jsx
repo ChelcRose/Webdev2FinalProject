@@ -4,8 +4,9 @@ import completeIcon from "../assets/sum-complete-icon.png";
 import dueTodayIcon from "../assets/sum-duetoday-icon.png";
 import inProgressIcon from "../assets/sum-inprogress-icon.png";
 import overdueIcon from "../assets/sum-overdue-icon.png";
+import activeUser from "../assets/sum-activeuser-icon.png";
 
-const TaskSummary = ({ summary }) => {
+const TaskSummaryAdmin = ({ summary }) => {
   return (
     <div className="task-summary">
       <div className="summary-card alltasks">
@@ -53,8 +54,17 @@ const TaskSummary = ({ summary }) => {
           </div>
         </div>
       </div>
+      <div className="summary-card user">
+        <div className="summary-content">
+          <img src={activeUser} alt="User Icon" className="summary-icon" />
+          <div>
+            <h2>{summary.users}</h2>
+            <p>Users</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default TaskSummary;
+export default TaskSummaryAdmin;

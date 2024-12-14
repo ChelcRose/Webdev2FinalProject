@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Dashboard.css';
+import '../design/dashboard.css';
 import Sidebar from './Sidebar';
 import TaskSummary from './TaskSummary';
 import TaskTable from './TaskTable';

@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../design/header.css';
+import { useUser } from '../components/usercontext';
+import '../design/headerAdmin.css';
 import arrowDown from '../assets/profile-arrowdown.png';
 import arrowUp from '../assets/profile-arrowup.png';
-import useStore from '../store';
+import plusIcon from '../assets/plus-icon.png';
 
-const Header = () => {
+const HeaderAdmin = ({ toggleSidebar, isSidebarOpen }) => {
+  const { user } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
-
-  const isSidebarOpen = useStore((state) => state.isSidebarOpen);
-  const toggleSidebar = useStore((state) => state.toggleSidebar);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
 
   const handleEditProfile = () => {
-    navigate('/edit-profile');
+    navigate('/edit-profile-admin');
   };
 
   const handleLogout = () => {
     navigate('/');
+  };
+
+  const handleCreateTask = () => {
+    navigate('/create-task');
   };
 
   return (
@@ -31,11 +34,22 @@ const Header = () => {
         <div className="line"></div>
         <div className="line"></div>
       </div>
+      <div className="create-task-button">
+        <div className="column1">Create New Task</div>
+        <div className="column2">
+          <img
+            src={plusIcon}
+            alt="Plus Icon"
+            className="plus-icon"
+            onClick={handleCreateTask}
+          />
+        </div>
+      </div>
       <div className="user-info">
         <div className="user-initial">U</div>
         <div className="dropdown">
           <span className="username" onClick={toggleDropdown}>
-            Username
+            Admin
             <img
               src={isDropdownOpen ? arrowUp : arrowDown}
               alt="Dropdown Arrow"
@@ -57,4 +71,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderAdmin;

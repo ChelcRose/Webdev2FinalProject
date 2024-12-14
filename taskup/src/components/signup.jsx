@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/taskup-logo.png';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log('Login Data:', data);
-    navigate('/dashboard'); 
+    console.log('Sign Up Data:', data);
+    navigate('/');
   };
 
   return (
@@ -18,18 +18,19 @@ const LoginPage = () => {
         <img src={logo} alt="TaskUp Logo" className="logo" />
       </div>
       <div className="right-panel">
-        <h2>Login to your account</h2>
+        <h2>Create your account</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <input {...register('name')} placeholder="Name" type="text" required />
           <input {...register('email')} placeholder="Email" type="email" required />
           <input {...register('password')} placeholder="Password" type="password" required />
-          <button type="submit">Sign In</button>
+          <button type="submit">Sign Up</button>
         </form>
         <p>
-          Don’t have an account yet? <a href="/signup">Sign Up</a>
+          Already have an account? <a href="/">Sign In</a>
         </p>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

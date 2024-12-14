@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './AllTasks.css';
+import '../design/allTasks.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
@@ -85,15 +85,15 @@ const AllTasks = () => {
           </table>
         </div>
         {isModalOpen && selectedTask && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button className="close-btn" onClick={closeModal}>
+          <div className="modal-overlay1">
+            <div className="modal-content1">
+              <button className="close-btn1" onClick={closeModal}>
                 &times;
               </button>
-              <div className="modal-header">
+              <div className="modal-header1">
                 <h2>{selectedTask.title}</h2>
               </div>
-              <div className="modal-body">
+              <div className="modal-body1">
                 <p>
                   <strong>Description:</strong> {selectedTask.description}
                 </p>
@@ -126,7 +126,7 @@ const AllTasks = () => {
                     <strong>Finish Task Date:</strong> {selectedTask.finishDate}
                   </p>
                 </div>
-                <div className="modal-notes">
+                <div className="modal-notes1">
                   <p>
                     <strong>Notes:</strong>
                   </p>
@@ -142,8 +142,8 @@ const AllTasks = () => {
                   />
                 </div>
               </div>
-              <div className="modal-footer">
-                <button className="edit-btn" onClick={handleSaveNotes}>
+              <div className="modal-footer1">
+                <button className="edit-btn1" onClick={handleSaveNotes}>
                   Save
                 </button>
               </div>

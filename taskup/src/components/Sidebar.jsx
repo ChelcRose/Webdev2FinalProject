@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './Sidebar.css';
+import '../design/sidebar.css';
 import logo from '../assets/sidebar-logo.png';
 import homeIcon from '../assets/home-icon.png';
 import tasksIcon from '../assets/allTasks-icon.png';
@@ -18,7 +18,7 @@ const Sidebar = () => {
     navigate(path);
   };
 
-  return (
+   return (
     <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
       <div className="sidebar-logo">
         <img src={logo} alt="TaskUp Logo" />

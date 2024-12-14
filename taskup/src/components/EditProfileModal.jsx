@@ -1,48 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import './EditProfileModal.css';
+import '../design/editProfileModal.css';
+import ProfilePhoto from '../assets/Profile_photo.png';
 
 const ProfileModal = ({ profileData, onClose, onSave }) => {
   const [modalData, setModalData] = useState(profileData);
   const [profileImage, setProfileImage] = useState(profileData.profileImage);
 
-  // Synchronize modalData and profileImage with props (profileData)
   useEffect(() => {
-    setModalData(profileData); // Ensure modalData is updated when profileData changes
-    setProfileImage(profileData.profileImage); // Set the profile image
+    setModalData(profileData); 
+    setProfileImage(profileData.profileImage); 
   }, [profileData]);
 
-  // Handle input change for form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setModalData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle profile image upload
   const handleImageUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImage(e.target.result); // Update profile image state
+        setProfileImage(e.target.result); 
       };
       reader.readAsDataURL(event.target.files[0]);
     }
   };
 
-  // Save the updated profile data
   const handleSave = () => {
-    const updatedData = { ...modalData, profileImage }; // Include the profile image in the saved data
-    onSave(updatedData); // Send updated data to parent component
+    const updatedData = { ...modalData, profileImage }; 
+    onSave(updatedData); 
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="proilfe-modal">
+      <div className="profile-modal-content">
         <h2>Edit Profile</h2>
 
-        {/* Profile Image Upload */}
         <div className="profile-picture">
           <img
-            src={profileImage || '/assets/Profile_photo.png'} // Default image if no profile image
+            src={profileImage || ProfilePhoto} 
             alt="Profile"
             width="100"
             height="100"
@@ -52,13 +48,12 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
             id="uploadPhoto"
             className="hidden-input"
             onChange={handleImageUpload}
-            accept="image/*" // Restrict file selection to images
+            accept="image/*"
           />
         </div>
 
-        {/* Form Inputs */}
-        <div className="form-grid">
-          <div className="form-group">
+        <div className="modal-form-grid">
+          <div className="profile-modal-form-group">
             <label htmlFor="modal-name">Name</label>
             <input
               id="modal-name"
@@ -69,7 +64,7 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
               placeholder="Full Name"
             />
           </div>
-          <div className="form-group">
+          <div className="profile-modal-form-group">
             <label htmlFor="modal-username">Username</label>
             <input
               id="modal-username"
@@ -80,7 +75,7 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
               placeholder="Username"
             />
           </div>
-          <div className="form-group">
+          <div className="profile-modal-form-group">
             <label htmlFor="modal-email">Email</label>
             <input
               id="modal-email"
@@ -91,7 +86,7 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
               placeholder="User@email.com"
             />
           </div>
-          <div className="form-group">
+          <div className="profile-modal-form-group">
             <label htmlFor="modal-password">Password</label>
             <input
               id="modal-password"
@@ -102,7 +97,7 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
               placeholder="********"
             />
           </div>
-          <div className="form-group">
+          <div className="profile-modal-form-group">
             <label htmlFor="modal-phone">Phone</label>
             <input
               id="modal-phone"
@@ -113,7 +108,7 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
               placeholder="+6391234567891"
             />
           </div>
-          <div className="form-group">
+          <div className="profile-modal-form-group">
             <label htmlFor="modal-confirmPassword">Confirm Password</label>
             <input
               id="modal-confirmPassword"
@@ -126,7 +121,6 @@ const ProfileModal = ({ profileData, onClose, onSave }) => {
           </div>
         </div>
 
-        {/* Save Button */}
         <button className="edit-profile-btn" onClick={handleSave}>
           Save Profile
         </button>
