@@ -5,11 +5,13 @@ import Header from './headerAdmin';
 import Footer from './footer';
 import UserList from './UserList'; 
 import EditUserModal from './editUserModal'; 
+import ViewUserModal from './viewUserModal';
 
 const UserManagement = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [users, setUsers] = useState([]);
   const [modalUser, setModalUser] = useState(null);
+  const [viewModalUser, setViewModalUser] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prevState) => !prevState);
@@ -34,7 +36,15 @@ const UserManagement = () => {
   };
 
   const closeModal = () => {
-    setModalUser(null); // Close modal by clearing modalUser state
+    setModalUser(null);
+  };
+
+  const viewUser = (user) => {
+    setViewModalUser(user);
+  };
+
+  const closeViewModal = () => {
+    setViewModalUser(null);
   };
 
   return (
@@ -45,12 +55,18 @@ const UserManagement = () => {
         <div className="user-container">
           <section className="latest-users">
             <h2 className="section-heading">User List</h2>
-            <UserList users={users} deleteUser={deleteUser} editUser={editUser} />
+            <UserList 
+              users={users} 
+              deleteUser={deleteUser} 
+              editUser={editUser} 
+              viewUser={viewUser} 
+            />
           </section>
         </div>
         <Footer />
       </div>
       {modalUser && <EditUserModal user={modalUser} setUser={setUsers} closeModal={closeModal} />}
+      {viewModalUser && <ViewUserModal user={viewModalUser} onClose={closeViewModal} />}
     </div>
   );
 };
