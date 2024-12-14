@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import '../design/editProfile.css';
 import Sidebar from './Sidebar';
-import Header from './header';
+import Header from './Header';
 import ProfileModal from './editProfileModal';
-import Footer from './footer';
+import Footer from './Footer';
 import useStore from '../store';
 import defaultAvatar from '../assets/default-avatar.png';
 

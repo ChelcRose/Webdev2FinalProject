@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import '../design/editProfile.css';
 import Sidebar from './sidebarAdmin';
-import Header from './header';
+import Header from './Header';
 import ProfileModal from './editAdminModal';
-import Footer from './footer';
+import Footer from './Footer';
 
 const ProfilePageAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

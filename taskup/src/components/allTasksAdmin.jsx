@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../design/allTasks.css';
 import Sidebar from './sidebarAdmin';
 import Header from './headerAdmin';
-import Footer from './footer';
+import Footer from './Footer';
 
 const AllTasksAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

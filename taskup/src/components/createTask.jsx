@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../design/createTask.css';
 import Sidebar from './sidebarAdmin';
 import Header from './headerAdmin';
-import Footer from './footer';
+import Footer from './Footer';
 
 const CreateTask = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

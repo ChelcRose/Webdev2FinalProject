@@ -4,7 +4,7 @@ import Sidebar from './sidebarAdmin';
 import TaskSummary from './taskSummaryAdmin';
 import TaskTable from './taskTableAdmin';
 import Header from './headerAdmin';
-import Footer from './footer';
+import Footer from './Footer';
 
 const DashboardAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
