@@ -1,0 +1,121 @@
+
+.modal-overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  
+  .modal-content1 {
+    background: #f7fcfc; 
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+  }
+  
+  
+  .modal-header1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #12454a;
+    margin-bottom: 20px;
+  }
+  
+  .modal-body1 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .modal-field label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #12454a;
+  }
+  
+  .modal-field input,
+  .modal-field textarea,
+  .modal-field select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    background-color: white;
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  .modal-field input:focus,
+  .modal-field textarea:focus,
+  .modal-field select:focus {
+    outline: none;
+    border-color: #12454a;
+    box-shadow: 0 0 5px rgba(18, 69, 74, 0.5);
+  }
+  
+  .modal-footer1 {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .edit-btn1,
+  .cancel-btn1 {
+    background-color: #12454a;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-btn1:hover {
+    background-color: #0d373c;
+  }
+  
+  .cancel-btn1 {
+    background-color: #d1d5db;
+    color: #333;
+  }
+  
+  .cancel-btn1:hover {
+    background-color: #b0b3b7;
+  }
+  
+  .close-btn1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .close-btn1:hover {
+    color: #12454a;
+  }
+  

@@ -27,7 +27,34 @@ const useStore = create((set) => ({
   itemsPerPage: 4,
   setCurrentPage: (page) => set({ currentPage: page }),
 
-  tasks: [],
+  tasks: [
+    {
+      id: 1,
+      title: 'Task 1',
+      assignedTo: 'user1@example.com',
+      priority: 'High',
+      status: 'In Progress',
+      dueDate: '2024-12-20',
+      description: 'Complete the first task description.',
+      assignedBy: 'Admin',
+      startDate: '2024-12-01',
+      finishDate: '',
+      notes: 'This is a note for Task 1.',
+    },
+    {
+      id: 2,
+      title: 'Task 2',
+      assignedTo: 'user2@example.com',
+      priority: 'Low',
+      status: 'Completed',
+      dueDate: '2024-12-15',
+      description: 'Complete the second task description.',
+      assignedBy: 'Admin',
+      startDate: '2024-11-20',
+      finishDate: '2024-12-10',
+      notes: 'This is a note for Task 2.',
+    },
+  ],
   addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
   updateTask: (updatedTask) =>
     set((state) => ({
