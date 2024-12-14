@@ -29,6 +29,7 @@ const EditProfile = () => {
                 <i className="profile-icon" />
               </div>
               <button className="upload-button">Upload Photo</button>
+              <hr></hr>
             </div>
           </div>
           <form className="profile-form" onSubmit={handleSave}>
