@@ -5,12 +5,12 @@ import HeaderAdmin from './HeaderAdmin';
 import ProfileModal from './editAdminModal';
 import Footer from './Footer';
 import useStore from '../store/store';
+import defaultAvatar from '../assets/default-avatar.png'; 
 
 const ProfilePageAdmin = () => {
   const isSidebarOpen = useStore((state) => state.isSidebarOpen);
   const toggleSidebar = useStore((state) => state.toggleSidebar);
 
-  const [profileImage, setProfileImage] = useState('/assets/Profile_photo.png');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [profileData, setProfileData] = useState({
@@ -20,14 +20,13 @@ const ProfilePageAdmin = () => {
     password: '',
     confirmPassword: '',
     phone: '',
-    profileImage: '/assets/Profile_photo.png', // Default profile image
+    profileImage: defaultAvatar, 
   });
 
   const handleImageUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImage(e.target.result);
         setProfileData((prevState) => ({
           ...prevState,
           profileImage: e.target.result,
@@ -54,17 +53,18 @@ const ProfilePageAdmin = () => {
           <div className="profile-header">
             <div className="profile-picture">
               <img
-                src={profileData.profileImage || profileImage}
+                src={profileData.profileImage || defaultAvatar} 
                 alt="Profile"
-                width="100"
-                height="100"
+                width="150"
+                height="150"
+                className="profile-avatar"
               />
             </div>
           </div>
 
-          {/* Profile Form */}
+          
           <div className="form-grid">
-            <div className="form-group">
+            <div className="form-group1">
               <label htmlFor="name">Name</label>
               <input
                 id="name"
@@ -74,7 +74,7 @@ const ProfilePageAdmin = () => {
                 disabled
               />
             </div>
-            <div className="form-group">
+            <div className="form-group1">
               <label htmlFor="username">Username</label>
               <input
                 id="username"
@@ -84,7 +84,7 @@ const ProfilePageAdmin = () => {
                 disabled
               />
             </div>
-            <div className="form-group">
+            <div className="form-group1">
               <label htmlFor="email">Email</label>
               <input
                 id="email"
@@ -94,7 +94,7 @@ const ProfilePageAdmin = () => {
                 disabled
               />
             </div>
-            <div className="form-group">
+            <div className="form-group1">
               <label htmlFor="password">Password</label>
               <input
                 id="password"
@@ -104,7 +104,7 @@ const ProfilePageAdmin = () => {
                 disabled
               />
             </div>
-            <div className="form-group">
+            <div className="form-group1">
               <label htmlFor="phone">Phone</label>
               <input
                 id="phone"
@@ -114,7 +114,7 @@ const ProfilePageAdmin = () => {
                 disabled
               />
             </div>
-            <div className="form-group">
+            <div className="form-group1">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 id="confirmPassword"
