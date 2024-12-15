@@ -1,35 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import '../design/notification.css';
 import Sidebar from './sidebarAdmin';
 import Header from './headerAdmin';
 import Footer from './Footer';
+import useStore from '../store/store';
 
 const NotificationsAdmin = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [notifications, setNotifications] = useState([
-    { title: 'New Task Assigned', description: 'You have been assigned a new task: Create Project Proposal by Admin #4', date: 'November 8, 2024 00:00', unread: true },
-    { title: 'Comment Added', description: 'Lacking details - Admin #2', date: 'November 3, 2024 21:30', unread: true },
-    { title: 'Overdue Task Alert', description: 'Task #3 is overdue. Please complete as soon as possible.', date: 'November 3, 2024 00:00', alert: true, unread: true },
-    { title: 'Task Due Today', description: 'Task #1 is due today. Please complete by the end of the day.', date: 'November 2, 2024 00:00', unread: false },
-    { title: 'New Task Assigned', description: 'You have been assigned a new task: Figma Prototype by Admin #1', date: 'November 1, 2024 11:59', unread: true },
-    { title: 'Overdue Task Alert', description: 'Task #1 is overdue. Please complete as soon as possible.', date: 'November 1, 2024 09:00', alert: true, unread: true },
-  ]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { isSidebarOpen, toggleSidebar, notifications, fetchNotifications } = useStore();
+  const { currentPage, setCurrentPage, itemsPerPage } = useStore();
 
-  const itemsPerPage = 4;
+  useEffect(() => {
+    fetchNotifications(); 
+  }, [fetchNotifications]);
+
   const totalPages = Math.ceil(notifications.length / itemsPerPage);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prevState) => !prevState);
-  };
-
   const handleNotificationClick = (index) => {
-    const updatedNotifications = notifications.map((notification, idx) =>
-      idx === index ? { ...notification, unread: false } : notification
-    );
-    setNotifications(updatedNotifications);
   };
-
+  
+ 
   const handlePageChange = (direction) => {
     if (direction === 'next' && currentPage < totalPages) {
       setCurrentPage(currentPage + 1);

@@ -1,36 +1,55 @@
 import { create } from 'zustand';
+import axios from 'axios';
 import defaultAvatar from '../assets/default-avatar.png';
 
 const useStore = create((set) => ({
-  
   isSidebarOpen: true,
   toggleSidebar: () =>
     set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
 
-
-  notifications: [
-    {
-      title: 'New Task Assigned',
-      description: 'You have been assigned a new task: Create Project Proposal.',
-      date: 'November 8, 2024',
-      unread: true,
-      alert: false,
-    },
-    {
-      title: 'Overdue Task',
-      description: 'Task #3 is overdue. Please complete it as soon as possible.',
-      date: 'November 3, 2024',
-      unread: true,
-      alert: true,
-    },
-  ],
-  setNotifications: (notifications) => set({ notifications }),
-
+  notifications: [],
+  fetchNotifications: async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/notifications');
+      set({ notifications: response.data });
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  },
+  addNotification: async (notificationData) => {
+    try {
+      const response = await axios.post('http://localhost:3001/api/notifications', notificationData);
+      set((state) => ({ notifications: [...state.notifications, response.data] }));
+    } catch (error) {
+      console.error('Error adding notification:', error);
+    }
+  },
+  updateNotification: async (notificationId, updatedData) => {
+    try {
+      const response = await axios.put(`http://localhost:3001/api/notifications/${notificationId}`, updatedData);
+      set((state) => ({
+        notifications: state.notifications.map((notification) =>
+          notification.id === notificationId ? response.data : notification
+        ),
+      }));
+    } catch (error) {
+      console.error('Error updating notification:', error);
+    }
+  },
+  deleteNotification: async (notificationId) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/notifications/${notificationId}`);
+      set((state) => ({
+        notifications: state.notifications.filter((notification) => notification.id !== notificationId),
+      }));
+    } catch (error) {
+      console.error('Error deleting notification:', error);
+    }
+  },
 
   currentPage: 1,
   itemsPerPage: 4,
   setCurrentPage: (page) => set({ currentPage: page }),
-
 
   tasks: [
     {
@@ -96,7 +115,6 @@ const useStore = create((set) => ({
       profileData: { ...state.profileData, ...updatedData },
     })),
 
-
   adminProfileData: {
     name: 'Admin Name',
     username: 'admin',
@@ -111,7 +129,7 @@ const useStore = create((set) => ({
       adminProfileData: { ...state.adminProfileData, ...updatedData },
     })),
 
-  userRole: 'user', 
+  userRole: 'user',
   setUserRole: (role) => set({ userRole: role }),
 }));
 
