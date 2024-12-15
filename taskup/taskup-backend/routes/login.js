@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// Middleware for input validation
 const validateInput = (req, res, next) => {
     const { email, password, name } = req.body;
     if (!email || !password || (req.path === '/signup' && !name)) {
@@ -11,7 +10,7 @@ const validateInput = (req, res, next) => {
     next();
 };
 
-router.post('/login', validateInput, async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     let connection;
@@ -47,17 +46,21 @@ router.post('/login', validateInput, async (req, res) => {
     }
 });
 
-router.post('/signup', validateInput, async (req, res) => {
+router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ message: 'Name, email, and password are required' });
+    }
 
     const isAdmin = email.endsWith('@taskup.com');
 
     try {
         const connection = await db.getConnection();
 
-        const [existingUser ] = await connection.query('SELECT * FROM user WHERE email = ? UNION SELECT * FROM admin WHERE email = ?', [email, email]);
+        const [existingUser] = await connection.query('SELECT * FROM user WHERE email = ? UNION SELECT * FROM admin WHERE email = ?', [email, email]);
 
-        if (existingUser .length > 0) {
+        if (existingUser.length > 0) {
             connection.release();
             return res.status(409).json({ message: 'Email already in use' });
         }
