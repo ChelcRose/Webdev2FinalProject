@@ -63,6 +63,16 @@
     box-sizing: border-box;
     resize: vertical;
   }
+  .modal-field input[type="date"] {
+    resize: none;
+  }
+  
+  .modal-field input[type="date"]:focus {
+    outline: none;
+    border-color: #12454a;
+    box-shadow: 0 0 5px rgba(18, 69, 74, 0.5);
+  }
+  
   
   .modal-field input:focus,
   .modal-field textarea:focus,
