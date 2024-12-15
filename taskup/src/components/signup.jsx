@@ -2,14 +2,16 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/taskup-logo.png";
+import { useStore } from '../store/store';
 
 const SignUpPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const setProfileData = useStore((state) => state.setProfileData);
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3001/api/signup", { //change this to your localhost
+      const response = await fetch("http://localhost:3001/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -18,7 +20,8 @@ const SignUpPage = () => {
       const result = await response.json();
       if (response.ok) {
         alert(result.message);
-        navigate("/");
+        setProfileData(data);
+        navigate("/edit-profile-user");
       } else {
         alert(result.message);
       }
@@ -46,7 +49,10 @@ const SignUpPage = () => {
           <input
             {...register("email", {
               required: "Email is required",
-              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Email is not valid"
+              }
             })}
             placeholder="Email"
             type="email"
