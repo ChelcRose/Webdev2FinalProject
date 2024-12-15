@@ -3,7 +3,7 @@ import '../design/notification.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
-import useStore from '../store';
+import useStore from '../store/store';
 
 const Notifications = () => {
   const isSidebarOpen = useStore((state) => state.isSidebarOpen); 

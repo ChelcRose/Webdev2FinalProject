@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../design/header.css';
 import arrowDown from '../assets/profile-arrowdown.png';
 import arrowUp from '../assets/profile-arrowup.png';
-import useStore from '../store';
+import useStore from '../store/store';
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,13 +11,18 @@ const Header = () => {
 
   const isSidebarOpen = useStore((state) => state.isSidebarOpen);
   const toggleSidebar = useStore((state) => state.toggleSidebar);
+  const userRole = useStore((state) => state.userRole); // Assuming you store user role in your state
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
 
   const handleEditProfile = () => {
-    navigate('/edit-profile');
+    if (userRole === 'admin') {
+      navigate('/edit-profile-admin');
+    } else {
+      navigate('/edit-profile-user');
+    }
   };
 
   const handleLogout = () => {

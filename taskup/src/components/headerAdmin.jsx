@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../components/usercontext';
 import '../design/headerAdmin.css';
 import arrowDown from '../assets/profile-arrowdown.png';
 import arrowUp from '../assets/profile-arrowup.png';
 import plusIcon from '../assets/plus-icon.png';
 
 const HeaderAdmin = ({ toggleSidebar, isSidebarOpen }) => {
-  const { user } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prevState) => !prevState);
-  };
+  const toggleDropdown = () => setIsDropdownOpen((prevState) => !prevState);
 
   const handleEditProfile = () => {
     navigate('/edit-profile-admin');
@@ -46,7 +42,7 @@ const HeaderAdmin = ({ toggleSidebar, isSidebarOpen }) => {
         </div>
       </div>
       <div className="user-info">
-        <div className="user-initial">U</div>
+        <div className="user-initial">A</div>
         <div className="dropdown">
           <span className="username" onClick={toggleDropdown}>
             Admin

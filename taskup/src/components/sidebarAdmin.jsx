@@ -5,13 +5,12 @@ import logo from '../assets/sidebar-logo.png';
 import homeIcon from '../assets/home-icon.png';
 import tasksIcon from '../assets/allTasks-icon.png';
 import notificationsIcon from '../assets/notifications-icon.png';
-import userManagementIcon from "../assets/user-management-icon.png";
+import userManagementIcon from '../assets/user-management-icon.png';
 
 const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Function to handle navigation
   const handleNavigation = (path) => {
     navigate(path);
   };

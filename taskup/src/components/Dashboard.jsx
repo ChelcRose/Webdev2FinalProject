@@ -5,7 +5,7 @@ import TaskSummary from './TaskSummary';
 import TaskTable from './TaskTable';
 import Header from './Header';
 import Footer from './Footer';
-import useStore from '../store';
+import useStore from '../store/store';
 
 const Dashboard = () => {
   const tasks = useStore((state) => state.tasks);

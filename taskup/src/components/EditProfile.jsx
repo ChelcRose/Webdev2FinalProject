@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import '../design/editProfile.css';
+import './EditProfile.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
-import ProfileModal from './editProfileModal';
+import ProfileModal from './EditProfileModal';
 import Footer from './Footer';
-import useStore from '../store';
+import useStore from '../store/store';
 import defaultAvatar from '../assets/default-avatar.png';
 
 const ProfilePage = () => {
@@ -20,11 +20,7 @@ const ProfilePage = () => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImage(e.target.result);
-        setProfileData((prevState) => ({
-          ...prevState,
-          profileImage: e.target.result,
-        }));
+        setProfileData({ profileImage: e.target.result });
       };
       reader.readAsDataURL(event.target.files[0]);
     }

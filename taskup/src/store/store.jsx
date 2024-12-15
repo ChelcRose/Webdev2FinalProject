@@ -2,9 +2,12 @@ import { create } from 'zustand';
 import defaultAvatar from '../assets/default-avatar.png';
 
 const useStore = create((set) => ({
+  // Sidebar State
   isSidebarOpen: true,
-  toggleSidebar: () => set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
+  toggleSidebar: () =>
+    set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
 
+  // Notifications
   notifications: [
     {
       title: 'New Task Assigned',
@@ -23,10 +26,12 @@ const useStore = create((set) => ({
   ],
   setNotifications: (notifications) => set({ notifications }),
 
+  // Pagination
   currentPage: 1,
   itemsPerPage: 4,
   setCurrentPage: (page) => set({ currentPage: page }),
 
+  // Task Management
   tasks: [
     {
       id: 1,
@@ -68,6 +73,7 @@ const useStore = create((set) => ({
     })),
   setTasks: (tasks) => set({ tasks }),
 
+  // Summary
   summary: {
     totalTasks: 0,
     inProgress: 0,
@@ -77,6 +83,7 @@ const useStore = create((set) => ({
   },
   setSummary: (summary) => set({ summary }),
 
+  // User Profile
   profileData: {
     name: '',
     username: '',
@@ -87,35 +94,14 @@ const useStore = create((set) => ({
     profileImage: defaultAvatar,
   },
   setProfileData: (updatedData) =>
-    set((state) => ({ profileData: { ...state.profileData, ...updatedData } })),
+    set((state) => ({
+      profileData: { ...state.profileData, ...updatedData },
+    })),
 
+  // Role-based State (User & Admin)
   user: {
     notifications: [],
-    setNotifications: (notifications) =>
-      set((state) => ({
-        user: { ...state.user, notifications },
-      })),
     tasks: [],
-    addTask: (task) =>
-      set((state) => ({
-        user: { ...state.user, tasks: [...state.user.tasks, task] },
-      })),
-    updateTask: (updatedTask) =>
-      set((state) => ({
-        user: {
-          ...state.user,
-          tasks: state.user.tasks.map((task) =>
-            task.id === updatedTask.id ? updatedTask : task
-          ),
-        },
-      })),
-    deleteTask: (taskId) =>
-      set((state) => ({
-        user: {
-          ...state.user,
-          tasks: state.user.tasks.filter((task) => task.id !== taskId),
-        },
-      })),
     summary: {
       totalTasks: 0,
       inProgress: 0,
@@ -123,49 +109,16 @@ const useStore = create((set) => ({
       overdue: 0,
       dueToday: 0,
     },
-    setSummary: (summary) =>
-      set((state) => ({
-        user: { ...state.user, summary },
-      })),
     profileData: {
       name: '',
       username: '',
       email: '',
       profileImage: defaultAvatar,
     },
-    setProfileData: (updatedData) =>
-      set((state) => ({
-        user: { ...state.user, profileData: { ...state.user.profileData, ...updatedData } },
-      })),
   },
-
   admin: {
     notifications: [],
-    setNotifications: (notifications) =>
-      set((state) => ({
-        admin: { ...state.admin, notifications },
-      })),
     tasks: [],
-    addTask: (task) =>
-      set((state) => ({
-        admin: { ...state.admin, tasks: [...state.admin.tasks, task] },
-      })),
-    updateTask: (updatedTask) =>
-      set((state) => ({
-        admin: {
-          ...state.admin,
-          tasks: state.admin.tasks.map((task) =>
-            task.id === updatedTask.id ? updatedTask : task
-          ),
-        },
-      })),
-    deleteTask: (taskId) =>
-      set((state) => ({
-        admin: {
-          ...state.admin,
-          tasks: state.admin.tasks.filter((task) => task.id !== taskId),
-        },
-      })),
     summary: {
       totalTasks: 0,
       inProgress: 0,
@@ -173,21 +126,45 @@ const useStore = create((set) => ({
       overdue: 0,
       dueToday: 0,
     },
-    setSummary: (summary) =>
-      set((state) => ({
-        admin: { ...state.admin, summary },
-      })),
     profileData: {
       name: '',
       username: '',
       email: '',
       profileImage: defaultAvatar,
     },
-    setProfileData: (updatedData) =>
-      set((state) => ({
-        admin: { ...state.admin, profileData: { ...state.admin.profileData, ...updatedData } },
-      })),
   },
+
+  // Utility functions for User & Admin management
+  updateUserProfile: (updatedData) =>
+    set((state) => ({
+      user: {
+        ...state.user,
+        profileData: { ...state.user.profileData, ...updatedData },
+      },
+    })),
+  updateAdminProfile: (updatedData) =>
+    set((state) => ({
+      admin: {
+        ...state.admin,
+        profileData: { ...state.admin.profileData, ...updatedData },
+      },
+    })),
+  setUserNotifications: (notifications) =>
+    set((state) => ({
+      user: { ...state.user, notifications },
+    })),
+  setAdminNotifications: (notifications) =>
+    set((state) => ({
+      admin: { ...state.admin, notifications },
+    })),
+  setUserTasks: (tasks) =>
+    set((state) => ({
+      user: { ...state.user, tasks },
+    })),
+  setAdminTasks: (tasks) =>
+    set((state) => ({
+      admin: { ...state.admin, tasks },
+    })),
 }));
 
 export default useStore;

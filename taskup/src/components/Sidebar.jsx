@@ -5,7 +5,7 @@ import logo from '../assets/sidebar-logo.png';
 import homeIcon from '../assets/home-icon.png';
 import tasksIcon from '../assets/allTasks-icon.png';
 import notificationsIcon from '../assets/notifications-icon.png';
-import useStore from '../store';
+import useStore from '../store/store';
 
 const Sidebar = () => {
   const location = useLocation();

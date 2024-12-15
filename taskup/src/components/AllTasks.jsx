@@ -4,7 +4,7 @@ import '../design/allTasks.css';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
-import useStore from '../store';
+import useStore from '../store/store';
 
 const AllTasks = () => {
   const { state } = useLocation();

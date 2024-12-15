@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import '../design/editProfile.css';
-import Sidebar from './sidebarAdmin';
-import Header from './Header';
+import SidebarAdmin from './SidebarAdmin';
+import HeaderAdmin from './HeaderAdmin';
 import ProfileModal from './editAdminModal';
 import Footer from './Footer';
+import useStore from '../store/store';
 
 const ProfilePageAdmin = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => setIsSidebarOpen((prevState) => !prevState);
+  const isSidebarOpen = useStore((state) => state.isSidebarOpen);
+  const toggleSidebar = useStore((state) => state.toggleSidebar);
 
   const [profileImage, setProfileImage] = useState('/assets/Profile_photo.png');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,9 +47,9 @@ const ProfilePageAdmin = () => {
 
   return (
     <div className="profile-page">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <SidebarAdmin isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className={`main-content ${isSidebarOpen ? '' : 'expanded'}`}>
-        <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+        <HeaderAdmin toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <div className="profile-container">
           <div className="profile-header">
             <div className="profile-picture">
