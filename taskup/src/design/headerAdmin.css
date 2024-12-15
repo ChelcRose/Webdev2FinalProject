@@ -89,3 +89,10 @@
 .column1 {
     margin-top: 5px;
 }
+
+.profile-circle {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+  }
+  

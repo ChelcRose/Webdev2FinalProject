@@ -2,12 +2,12 @@ import { create } from 'zustand';
 import defaultAvatar from '../assets/default-avatar.png';
 
 const useStore = create((set) => ({
-  // Sidebar State
+  
   isSidebarOpen: true,
   toggleSidebar: () =>
     set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
 
-  // Notifications
+
   notifications: [
     {
       title: 'New Task Assigned',
@@ -26,12 +26,12 @@ const useStore = create((set) => ({
   ],
   setNotifications: (notifications) => set({ notifications }),
 
-  // Pagination
+
   currentPage: 1,
   itemsPerPage: 4,
   setCurrentPage: (page) => set({ currentPage: page }),
 
-  // Task Management
+
   tasks: [
     {
       id: 1,
@@ -73,7 +73,6 @@ const useStore = create((set) => ({
     })),
   setTasks: (tasks) => set({ tasks }),
 
-  // Summary
   summary: {
     totalTasks: 0,
     inProgress: 0,
@@ -83,14 +82,13 @@ const useStore = create((set) => ({
   },
   setSummary: (summary) => set({ summary }),
 
-  // User Profile
   profileData: {
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
+    name: 'User Name',
+    username: 'username',
+    email: 'user@example.com',
+    password: '********',
+    confirmPassword: '********',
+    phone: '+6391234567891',
     profileImage: defaultAvatar,
   },
   setProfileData: (updatedData) =>
@@ -98,73 +96,23 @@ const useStore = create((set) => ({
       profileData: { ...state.profileData, ...updatedData },
     })),
 
-  // Role-based State (User & Admin)
-  user: {
-    notifications: [],
-    tasks: [],
-    summary: {
-      totalTasks: 0,
-      inProgress: 0,
-      completed: 0,
-      overdue: 0,
-      dueToday: 0,
-    },
-    profileData: {
-      name: '',
-      username: '',
-      email: '',
-      profileImage: defaultAvatar,
-    },
-  },
-  admin: {
-    notifications: [],
-    tasks: [],
-    summary: {
-      totalTasks: 0,
-      inProgress: 0,
-      completed: 0,
-      overdue: 0,
-      dueToday: 0,
-    },
-    profileData: {
-      name: '',
-      username: '',
-      email: '',
-      profileImage: defaultAvatar,
-    },
-  },
 
-  // Utility functions for User & Admin management
-  updateUserProfile: (updatedData) =>
+  adminProfileData: {
+    name: 'Admin Name',
+    username: 'admin',
+    email: 'admin@example.com',
+    password: '********',
+    confirmPassword: '********',
+    phone: '+6391234567891',
+    profileImage: defaultAvatar,
+  },
+  setAdminProfileData: (updatedData) =>
     set((state) => ({
-      user: {
-        ...state.user,
-        profileData: { ...state.user.profileData, ...updatedData },
-      },
+      adminProfileData: { ...state.adminProfileData, ...updatedData },
     })),
-  updateAdminProfile: (updatedData) =>
-    set((state) => ({
-      admin: {
-        ...state.admin,
-        profileData: { ...state.admin.profileData, ...updatedData },
-      },
-    })),
-  setUserNotifications: (notifications) =>
-    set((state) => ({
-      user: { ...state.user, notifications },
-    })),
-  setAdminNotifications: (notifications) =>
-    set((state) => ({
-      admin: { ...state.admin, notifications },
-    })),
-  setUserTasks: (tasks) =>
-    set((state) => ({
-      user: { ...state.user, tasks },
-    })),
-  setAdminTasks: (tasks) =>
-    set((state) => ({
-      admin: { ...state.admin, tasks },
-    })),
+
+  userRole: 'user', 
+  setUserRole: (role) => set({ userRole: role }),
 }));
 
 export default useStore;

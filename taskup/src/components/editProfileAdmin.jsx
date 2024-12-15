@@ -5,32 +5,23 @@ import HeaderAdmin from './HeaderAdmin';
 import ProfileModal from './editAdminModal';
 import Footer from './Footer';
 import useStore from '../store/store';
-import defaultAvatar from '../assets/default-avatar.png'; 
+import defaultAvatar from '../assets/default-avatar.png';
 
 const ProfilePageAdmin = () => {
   const isSidebarOpen = useStore((state) => state.isSidebarOpen);
   const toggleSidebar = useStore((state) => state.toggleSidebar);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [profileData, setProfileData] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    profileImage: defaultAvatar, 
-  });
+  const adminProfileData = useStore((state) => state.adminProfileData);
+  const setAdminProfileData = useStore((state) => state.setAdminProfileData);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleImageUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileData((prevState) => ({
-          ...prevState,
-          profileImage: e.target.result,
-        }));
+        setAdminProfileData({ profileImage: e.target.result });
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -40,7 +31,7 @@ const ProfilePageAdmin = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const saveProfile = (updatedProfile) => {
-    setProfileData(updatedProfile);
+    setAdminProfileData(updatedProfile);
     closeModal();
   };
 
@@ -53,7 +44,7 @@ const ProfilePageAdmin = () => {
           <div className="profile-header">
             <div className="profile-picture">
               <img
-                src={profileData.profileImage || defaultAvatar} 
+                src={adminProfileData.profileImage || defaultAvatar} 
                 alt="Profile"
                 width="150"
                 height="150"
@@ -62,7 +53,6 @@ const ProfilePageAdmin = () => {
             </div>
           </div>
 
-          
           <div className="form-grid">
             <div className="form-group1">
               <label htmlFor="name">Name</label>
@@ -70,7 +60,7 @@ const ProfilePageAdmin = () => {
                 id="name"
                 type="text"
                 placeholder="Full Name"
-                value={profileData.name}
+                value={adminProfileData.name}
                 disabled
               />
             </div>
@@ -80,7 +70,7 @@ const ProfilePageAdmin = () => {
                 id="username"
                 type="text"
                 placeholder="Username"
-                value={profileData.username}
+                value={adminProfileData.username}
                 disabled
               />
             </div>
@@ -90,7 +80,7 @@ const ProfilePageAdmin = () => {
                 id="email"
                 type="email"
                 placeholder="Admin@email.com"
-                value={profileData.email}
+                value={adminProfileData.email}
                 disabled
               />
             </div>
@@ -100,7 +90,7 @@ const ProfilePageAdmin = () => {
                 id="password"
                 type="password"
                 placeholder="********"
-                value={profileData.password}
+                value={adminProfileData.password}
                 disabled
               />
             </div>
@@ -110,7 +100,7 @@ const ProfilePageAdmin = () => {
                 id="phone"
                 type="text"
                 placeholder="+6391234567891"
-                value={profileData.phone}
+                value={adminProfileData.phone}
                 disabled
               />
             </div>
@@ -120,7 +110,7 @@ const ProfilePageAdmin = () => {
                 id="confirmPassword"
                 type="password"
                 placeholder="********"
-                value={profileData.confirmPassword}
+                value={adminProfileData.confirmPassword}
                 disabled
               />
             </div>
@@ -135,9 +125,9 @@ const ProfilePageAdmin = () => {
 
         {isModalOpen && (
           <ProfileModal
-            profileData={profileData}
+            profileData={adminProfileData}
             onClose={closeModal}
-            onSave={saveProfile}
+            onSave={saveProfile} 
             handleImageUpload={handleImageUpload}
           />
         )}

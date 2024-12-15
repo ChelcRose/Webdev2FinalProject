@@ -11,18 +11,12 @@ const Header = () => {
 
   const isSidebarOpen = useStore((state) => state.isSidebarOpen);
   const toggleSidebar = useStore((state) => state.toggleSidebar);
-  const userRole = useStore((state) => state.userRole); // Assuming you store user role in your state
+  const profileData = useStore((state) => state.profileData); 
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prevState) => !prevState);
-  };
+  const toggleDropdown = () => setIsDropdownOpen((prevState) => !prevState);
 
   const handleEditProfile = () => {
-    if (userRole === 'admin') {
-      navigate('/edit-profile-admin');
-    } else {
-      navigate('/edit-profile-user');
-    }
+    navigate('/edit-profile-user');
   };
 
   const handleLogout = () => {
@@ -37,7 +31,16 @@ const Header = () => {
         <div className="line"></div>
       </div>
       <div className="user-info">
-        <div className="user-initial">U</div>
+        <div className="user-initial">
+          <img
+            src={profileData.profileImage} 
+            alt="Profile"
+            className="profile-circle"
+            width="35"
+            height="35"
+            style={{ borderRadius: '50%' }}
+          />
+        </div>
         <div className="dropdown">
           <span className="username" onClick={toggleDropdown}>
             Username
@@ -53,7 +56,9 @@ const Header = () => {
                 Edit Profile
               </p>
               <hr />
-              <p onClick={handleLogout} className="logout-button">Log Out</p>
+              <p onClick={handleLogout} className="logout-button">
+                Log Out
+              </p>
             </div>
           )}
         </div>

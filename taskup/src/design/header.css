@@ -18,6 +18,12 @@
     left: 0;
   }
   
+  .profile-circle {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+  }
+  
   .user-info {
     display: flex;
     align-items: center;
