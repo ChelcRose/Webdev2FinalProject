@@ -30,9 +30,28 @@ const ProfilePageAdmin = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const saveProfile = (updatedProfile) => {
-    setAdminProfileData(updatedProfile);
-    closeModal();
+  const saveProfile = async (updatedProfile) => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/admin/${adminProfileData.admin_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedProfile),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to update profile');
+      }
+  
+      const result = await response.json();
+      setAdminProfileData(result);
+      closeModal();
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      alert('An error occurred while saving the profile. Please try again.');
+    }
   };
 
   return (
