@@ -1,17 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "./usercontext";
+import { useUser  } from "./usercontext";
 import logo from "../assets/taskup-logo.png";
 
 const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { setUser } = useUser();
+  const { setUser  } = useUser ();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3001/api/login", {
+      const response = await fetch("http://localhost:3001/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -20,10 +20,10 @@ const LoginPage = () => {
       const result = await response.json();
       if (response.ok) {
         alert("Login successful!");
-        setUser({
+        setUser ({
           isAuthenticated: true,
           user: {
-            user_id: result.user.user_id,
+            user_id: result.user.id,
             name: result.user.name,
             email: result.user.email
           }
@@ -55,10 +55,14 @@ const LoginPage = () => {
           <input
             {...register("email", {
               required: "Email is required",
-              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid email format"
+              }
             })}
             placeholder="Email"
             type="email"
+            aria-label="Email"
           />
           {errors.email && <p className="error">{errors.email.message}</p>}
 
@@ -69,6 +73,7 @@ const LoginPage = () => {
             })}
             placeholder="Password"
             type="password"
+            aria-label="Password"
           />
           {errors.password && <p className="error">{errors.password.message}</p>}
 

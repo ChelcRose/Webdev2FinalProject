@@ -1,7 +1,8 @@
 const express = require('express');
-const profileRoutes = require('./routes/profile');
-const loginRoutes = require('./routes/login');
 const cors = require('cors');
+const profileRoutes = require('./routes/profile');
+const loginRoutes = require('./routes/loginRoute');
+const signupRoutes = require('./routes/signupRoute');
 
 const app = express();
 const port = 3001;
@@ -15,11 +16,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use('/api', profileRoutes);
-app.use('/api', loginRoutes);
+app.use('/profile', profileRoutes);
+app.use('/login', loginRoutes);
+app.use('/signup', signupRoutes);
 
 app.get('/', (req, res) => {
-  res.send('It works!');
+  res.send('API is running');
 });
 
 app.listen(port, () => {

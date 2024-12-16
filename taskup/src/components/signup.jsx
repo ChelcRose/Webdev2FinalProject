@@ -2,16 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/taskup-logo.png";
-import { useStore } from '../store/store';
 
 const SignUpPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const setProfileData = useStore((state) => state.setProfileData);
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3001/api/signup", {
+      const response = await fetch("http://localhost:3001/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -20,8 +18,7 @@ const SignUpPage = () => {
       const result = await response.json();
       if (response.ok) {
         alert(result.message);
-        setProfileData(data);
-        navigate("/edit-profile-user");
+        navigate("/");
       } else {
         alert(result.message);
       }
@@ -43,6 +40,7 @@ const SignUpPage = () => {
             {...register("name", { required: "Name is required" })}
             placeholder="Name"
             type="text"
+            aria-label="Name"
           />
           {errors.name && <p className="error">{errors.name.message}</p>}
 
@@ -51,11 +49,12 @@ const SignUpPage = () => {
               required: "Email is required",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Email is not valid"
+                message: "Invalid email format"
               }
             })}
             placeholder="Email"
             type="email"
+            aria-label="Email"
           />
           {errors.email && <p className="error">{errors.email.message}</p>}
 
@@ -66,6 +65,7 @@ const SignUpPage = () => {
             })}
             placeholder="Password"
             type="password"
+            aria-label="Password"
           />
           {errors.password && <p className="error">{errors.password.message}</p>}
 
